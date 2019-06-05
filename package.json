@@ -41,7 +41,6 @@
     "init-tslint": "rc-tools run gen-lint-config",
     "init-storybook": "rc-tools run genStorybook",
     "coverage": "rc-tools run test --coverage",
-    "pre-commit": "rc-tools run pre-commit",
     "storybook": "rc-tools run storybook",
     "lint-staged": "lint-staged",
     "now-build": "npm run build"
@@ -56,8 +55,6 @@
     "enzyme-adapter-react-16": "^1.7.1",
     "enzyme-to-json": "^3.1.4",
     "jsonp": "^0.2.0",
-    "lint-staged": "^8.1.0",
-    "pre-commit": "1.x",
     "querystring": "^0.2.0",
     "rc-dialog": "7.3.1",
     "rc-test": "^6.0.1",
@@ -82,13 +79,4 @@
     "react-lifecycles-compat": "^3.0.2",
     "warning": "^4.0.2"
   },
-  "pre-commit": [
-    "lint-staged"
-  ],
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "npm run pre-commit",
-      "git add"
-    ]
-  }
 }
