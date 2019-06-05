@@ -78,5 +78,5 @@
     "rc-util": "^4.0.4",
     "react-lifecycles-compat": "^3.0.2",
     "warning": "^4.0.2"
-  },
+  }
 }
