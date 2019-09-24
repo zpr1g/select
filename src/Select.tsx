@@ -548,6 +548,7 @@ class Select extends React.Component<Partial<ISelectProps>, ISelectState> {
   };
 
   public onOuterBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    console.log(e.relatedTarget);
     if (this.props.disabled) {
       e.preventDefault();
       return;

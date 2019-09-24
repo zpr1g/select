@@ -35,45 +35,31 @@ class Test extends React.Component {
   render() {
     const { value } = this.state;
     return (
-      <div
-        onMouseDown={e => {
-          e.preventDefault();
-          return false;
-        }}
-      >
+      <div>
         <h2>custom dropdown render select</h2>
-
         <div>
           <Select
             placeholder="placeholder"
-            tags
             dropdownMenuStyle={{ maxHeight: 200 }}
             style={{ width: 500 }}
             value={value}
+            showSearch={false}
             onChange={this.onChange}
             onSelect={this.onSelect}
             onDeselect={this.onDeselect}
-            tokenSeparators={[' ', ',']}
             onFocus={() => console.log('focus')}
             onBlur={() => console.log('blur')}
             dropdownRender={menu => (
               <React.Fragment>
-                <div
-                  onClick={() => {
-                    console.log('before clicked');
-                  }}
-                >
-                  BEFORE
+                <div>
+                  BEFORE <input />
                 </div>
-
                 {menu}
-
-                <div
-                  onClick={() => {
-                    console.log('after clicked');
-                  }}
-                >
-                  AFTER
+                <div>
+                  AFTER{' '}
+                  <button type="button" onClick={() => console.log('click button')}>
+                    button
+                  </button>
                 </div>
               </React.Fragment>
             )}
