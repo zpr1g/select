@@ -141,6 +141,93 @@ class Test extends React.Component {
           </Select>
         </div>
 
+        <h2>Placement Single Select</h2>
+
+        <div style={{ width: 300 }}>
+          <Select
+            autoFocus
+            id="my-select"
+            value={value}
+            placeholder="placeholder"
+            showSearch={false}
+            style={{ width: 500 }}
+            onBlur={this.onBlur}
+            onFocus={this.onFocus}
+            onSearch={this.onSearch}
+            allowClear
+            optionFilterProp="text"
+            onChange={this.onChange}
+            backfill
+            onPopupScroll={(...args) => {
+              console.log('Scroll:', args);
+            }}
+            getPlacements={() => ({
+              bottomLeft: {
+                points: ['tl', 'bl'],
+                offset: [0, 0],
+                overflow: {
+                  adjustX: 1,
+                  adjustY: 0,
+                },
+              },
+              bottomRight: {
+                points: ['tr', 'br'],
+                offset: [0, 0],
+                overflow: {
+                  adjustX: 1,
+                  adjustY: 0,
+                },
+              },
+              topLeft: {
+                points: ['bl', 'tl'],
+                offset: [0, 0],
+                overflow: {
+                  adjustX: 1,
+                  adjustY: 0,
+                },
+              },
+              topRight: {
+                points: ['br', 'tr'],
+                offset: [0, 0],
+                overflow: {
+                  adjustX: 1,
+                  adjustY: 0,
+                },
+              },
+            })}
+          >
+            <Option value={null}>不选择</Option>
+            <Option value="01" text="jack" title="jack">
+              <b
+                style={{
+                  color: 'red',
+                }}
+              >
+                jack
+              </b>
+            </Option>
+            <Option value="11" text="lucy">
+              lucy
+            </Option>
+            <Option value="21" disabled text="disabled">
+              disabled
+            </Option>
+            <Option
+              value="31"
+              text="yiminghe"
+              className="test-option"
+              style={{ background: 'yellow' }}
+            >
+              yiminghe
+            </Option>
+            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => (
+              <Option key={i} value={String(i)} text={String(i)}>
+                {i}-text
+              </Option>
+            ))}
+          </Select>
+        </div>
+
         <p>
           <button type="button" onClick={this.onDestroy}>
             destroy

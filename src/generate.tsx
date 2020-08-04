@@ -13,7 +13,7 @@ import KeyCode from 'rc-util/lib/KeyCode';
 import classNames from 'classnames';
 import useMergedState from 'rc-util/lib/hooks/useMergedState';
 import Selector, { RefSelectorProps } from './Selector';
-import SelectTrigger, { RefTriggerProps } from './SelectTrigger';
+import SelectTrigger, { RefTriggerProps, getBuiltInPlacements } from './SelectTrigger';
 import { RenderNode, Mode, RenderDOMFunc } from './interface';
 import {
   GetLabeledValue,
@@ -106,6 +106,7 @@ export interface SelectProps<OptionsType extends object[], ValueType> extends Re
   dropdownStyle?: React.CSSProperties;
   dropdownClassName?: string;
   dropdownMatchSelectWidth?: boolean | number;
+  getPlacements?: typeof getBuiltInPlacements;
   virtual?: boolean;
   dropdownRender?: (menu: React.ReactElement) => React.ReactElement;
   dropdownAlign?: any;
@@ -284,6 +285,7 @@ export default function generateSelector<
       dropdownStyle,
       dropdownClassName,
       dropdownMatchSelectWidth,
+      getPlacements,
       dropdownRender,
       dropdownAlign,
       showAction = [],
@@ -684,7 +686,9 @@ export default function generateSelector<
     // If menu is open, OptionList will take charge
     // If mode isn't tags, press enter is not meaningful when you can't see any option
     const onSearchSubmit = (searchText: string) => {
-      const newRawValues = Array.from(new Set<RawValueType>([...mergedRawValue, searchText]));
+      const newRawValues = Array.from(
+        new Set<RawValueType>([...mergedRawValue, searchText]),
+      );
       triggerChange(newRawValues);
       newRawValues.forEach(newRawValue => {
         triggerSelect(newRawValue, true, 'input');
@@ -1013,6 +1017,7 @@ export default function generateSelector<
           dropdownClassName={dropdownClassName}
           direction={direction}
           dropdownMatchSelectWidth={dropdownMatchSelectWidth}
+          getPlacements={getPlacements}
           dropdownRender={dropdownRender}
           dropdownAlign={dropdownAlign}
           getPopupContainer={getPopupContainer}
